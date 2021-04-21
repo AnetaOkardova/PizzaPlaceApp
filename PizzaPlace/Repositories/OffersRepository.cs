@@ -1,4 +1,5 @@
-﻿using PizzaPlace.Repositories.Interfaces;
+﻿using PizzaPlace.Models;
+using PizzaPlace.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,11 @@ namespace PizzaPlace.Repositories
         private PizzaPlaceDbContext _context { get; set; }
         public OffersRepository(PizzaPlaceDbContext context)
         {
+        }
+
+        public List<Offer> GetAllValid()
+        {
+            return _context.Offers.Where(x=>x.ValidUntil>=DateTime.Now).ToList();
         }
     }
 }

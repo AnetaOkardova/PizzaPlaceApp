@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PizzaPlace.Repositories.Interfaces
 {
-    public interface IOffersRepository
+    public interface IMenuItemsRepositorty
     {
-        List<Offer> GetAllValid();
+        List<MenuItem> GetAll();
     }
 }

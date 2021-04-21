@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PizzaPlace.Repositories;
 using PizzaPlace.Repositories.Interfaces;
+using PizzaPlace.Services;
+using PizzaPlace.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +30,15 @@ namespace PizzaPlace
         {
             services.AddRazorPages();
 
-            services.AddDbContext<PizzaPlaceDbContext>(x => x.UseSqlServer("Server=(localDb)\\MSSQLLocalDB;Database= PizzaPlaceApp; Trusted_Connection=True;"));
+            services.AddDbContext<PizzaPlaceDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("PizzaPlaceDb")));
 
+            //services
+            services.AddTransient<IOffersService, OffersService>();
+            services.AddTransient<IMenuItemsService, MenuItemsService>();
+
+            //repositories
             services.AddTransient<IOffersRepository, OffersRepository>();
+            services.AddTransient<IMenuItemsRepositorty, MenuItemsRepositorty>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

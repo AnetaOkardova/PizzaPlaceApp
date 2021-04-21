@@ -28,13 +28,26 @@
     </a>
 </div>
 
-@foreach (var offer in Model.Offers)
+@if (Model.Message != null)
 {
     <div class="card justify-content-center m-1">
-        <div class="card-body text-center">
-            <h5 class="card-title">@offer.Title</h5>
-            <p class="card-text">@offer.Description</p>
-            <p>Valid until: @offer.ValidUntil.ToString("dd-MM-yyyy")</p>
+        <div class="card-body text-center text-danger">
+            <p class="card-text">@Model.Message</p>
         </div>
     </div>
 }
+else
+{
+    @foreach (var offer in Model.Offers)
+    {
+        <div class="card justify-content-center m-1">
+            <div class="card-body text-center">
+                <h5 class="card-title">@offer.Title</h5>
+                <p class="card-text">@offer.Description</p>
+                <p>Valid until: @offer.ValidUntil.ToString("dd-MM-yyyy")</p>
+            </div>
+        </div>
+    }
+}
+
+

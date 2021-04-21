@@ -1,13 +1,14 @@
 ﻿using PizzaPlace.Models;
+using PizzaPlace.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PizzaPlace.Repositories.Interfaces
+namespace PizzaPlace.Services.Interfaces
 {
-    public interface IOffersRepository
+    public interface IMenuItemsService
     {
-        List<Offer> GetAllValid();
+        List<MenuItem> GetAll();
     }
 }

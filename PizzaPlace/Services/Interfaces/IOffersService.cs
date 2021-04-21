@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PizzaPlace.Repositories.Interfaces
+namespace PizzaPlace.Services.Interfaces
 {
-    public interface IOffersRepository
+    public interface IOffersService
     {
         List<Offer> GetAllValid();
     }
