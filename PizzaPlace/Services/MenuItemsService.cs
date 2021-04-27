@@ -24,6 +24,10 @@ namespace PizzaPlace.Services
         {
            return _menuItemsRepositorty.GetAll();
         }
-        
+
+        public MenuItem GetById(int id)
+        {
+            return _menuItemsRepositorty.GetById(id);
+        }
     }
 }

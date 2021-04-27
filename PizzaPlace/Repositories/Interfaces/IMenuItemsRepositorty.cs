@@ -9,5 +9,6 @@ namespace PizzaPlace.Repositories.Interfaces
     public interface IMenuItemsRepositorty
     {
         List<MenuItem> GetAll();
+        MenuItem GetById(int id);
     }
 }

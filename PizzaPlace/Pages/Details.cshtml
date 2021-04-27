@@ -1,0 +1,35 @@
+﻿@page
+@model PizzaPlace.Pages.DetailsModel
+@{
+}
+
+@if (Model.Message != null)
+{
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col">
+                <h4 class="text-danger">@Model.Message</h4>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col">
+                <h1>Details for @Model.MenuItem.Title</h1>
+                <p>Price: @Model.MenuItem.Price @Model.MenuItem.Currency</p>
+                <hr />
+                <p>Ingredients:</p>
+                <p class="text-justify">@Model.MenuItem.Description</p>
+                <div>
+                    <img class="w-50 rounded" style="height: 350px" src="@Model.MenuItem.ImageUrl" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="m-2">
+    <a asp-page="Menu" class="btn btn-primary">Return</a>
+</div>

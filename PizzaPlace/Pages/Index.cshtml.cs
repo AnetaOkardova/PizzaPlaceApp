@@ -23,6 +23,7 @@ namespace PizzaPlace.Pages
 
 
         public List<OfferViewModel> Offers { get; set; }
+
         public string Message { get; set; }
 
 
