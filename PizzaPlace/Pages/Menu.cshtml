@@ -5,11 +5,32 @@
 }
 
 
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+@section Styles{
+    <link rel="stylesheet" href="~/css/MenuStyle.css" />
+}
+<div class="container bcontent">
+    <div class="row justify-content-between">
+        @foreach (var item in @Model.MenuItems)
+        {
+
+
+            <div class="card menuItemCard m-2" style="width: 500px;">
+                <div class="row no-gutters">
+                    <div class="col-sm-5">
+                        <img class="card-img menuItemImg" src="@item.ImageUrl" alt="Menu Item Image">
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <p class="card-text menuItemDescription">@item.Description</p>
+                            <p class="card-text">Price: @item.Price @item.Currency</p>
+
+                            <a href="#" class="btn btn-primary">See more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
     </div>
-    <img src="https://www.delonghi.com/Global/recipes/multifry/pizza_fresca.jpg" class="card-img-bottom w-100 rounded-circle" alt="...">
 </div>

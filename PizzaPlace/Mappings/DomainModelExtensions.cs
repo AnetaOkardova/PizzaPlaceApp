@@ -18,5 +18,18 @@ namespace PizzaPlace.Mappings
                 ValidUntil = offer.ValidUntil
             };
         }
+        
+            public static MenuItemView ToMenuItemView(this MenuItem menuItem)
+        {
+            return new MenuItemView()
+            {
+                Id = menuItem.Id,
+                Title = menuItem.Title,
+                Description = menuItem.Description,
+                Price = menuItem.Price,
+                Currency = menuItem.Currency,
+                ImageUrl = menuItem.ImageUrl
+            };
+        }
     }
 }

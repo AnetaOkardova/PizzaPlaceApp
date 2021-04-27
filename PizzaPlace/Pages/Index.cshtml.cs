@@ -28,34 +28,12 @@ namespace PizzaPlace.Pages
 
         public void OnGet()
         {
-            //var offers = _offersService.GetAllValid();
-            //if (offers == null)
-            //{
-            //    Message = "There are no active offers at this time";
-            //}
-            //Offers = offers.Select(x => x.ToOfferViewModel()).ToList();
-
-            Offers = new List<OfferViewModel>()
+            var offers = _offersService.GetAllValid();
+            if (offers == null)
             {
-                new OfferViewModel()
-                {
-                    Title = "Naslov",
-                    Description = "With supporting text below as a natural lead-in to additional content.",
-                    ValidUntil = DateTime.Now.AddDays(15)
-                },
-                new OfferViewModel()
-                {
-                    Title = "Naslov2",
-                    Description = "With supporting text below as a natural lead-in to additional content.",
-                    ValidUntil = DateTime.Now.AddDays(5)
-                },
-                new OfferViewModel()
-                {
-                    Title = "Naslov3",
-                    Description = "With supporting text below as a natural lead-in to additional content.",
-                    ValidUntil = DateTime.Now.AddDays(25)
-                }
-            };
+                Message = "There are no active offers at this time";
+            }
+            Offers = offers.Select(x => x.ToOfferViewModel()).ToList();
         }
     }
 }

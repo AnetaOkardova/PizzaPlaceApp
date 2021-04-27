@@ -12,11 +12,12 @@ namespace PizzaPlace.Repositories
         private PizzaPlaceDbContext _context { get; set; }
         public OffersRepository(PizzaPlaceDbContext context)
         {
+            _context = context;
         }
 
         public List<Offer> GetAllValid()
         {
-            return _context.Offers.Where(x=>x.ValidUntil>=DateTime.Now).ToList();
+            return _context.Offers.Where(x=>x.ValidUntil.Date>=DateTime.Now.Date).ToList();
         }
     }
 }
