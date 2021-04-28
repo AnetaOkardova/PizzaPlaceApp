@@ -35,10 +35,14 @@ namespace PizzaPlace
             //services
             services.AddTransient<IOffersService, OffersService>();
             services.AddTransient<IMenuItemsService, MenuItemsService>();
-
+            services.AddTransient<IOrdersService, OrdersService>();
+            services.AddTransient<ISubscriptionsService, SubscriptionsService>();
+            
             //repositories
             services.AddTransient<IOffersRepository, OffersRepository>();
             services.AddTransient<IMenuItemsRepositorty, MenuItemsRepositorty>();
+            services.AddTransient<IOrdersRepository, OrdersRepository>();
+            services.AddTransient<ISubscriptionsRepository, SubscriptionsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -4,24 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PizzaPlace.Models
+namespace PizzaPlace.ViewModels
 {
-    public class Order
+    public class OrderViewModel
     {
-        public int Id { get; set; }
-        [Required]
-        [MaxLength(20)]
         public string Name { get; set; }
-        [Required]
-        [MaxLength(20)]
         public string Surname { get; set; }
-        [Required]
         public int Phone { get; set; }
-        [Required]
-        [MaxLength(50)]
         public string Address { get; set; }
-        [Required]
         public string Message { get; set; }
-        public DateTime DateCreated { get; set; }
     }
 }

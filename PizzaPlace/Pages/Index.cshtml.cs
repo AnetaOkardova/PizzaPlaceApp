@@ -26,7 +26,6 @@ namespace PizzaPlace.Pages
 
         public string Message { get; set; }
 
-
         public void OnGet()
         {
             var offers = _offersService.GetAllValid();

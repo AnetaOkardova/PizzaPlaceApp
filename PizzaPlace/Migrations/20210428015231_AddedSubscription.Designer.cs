@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaPlace.Repositories;
 
 namespace PizzaPlace.Migrations
 {
     [DbContext(typeof(PizzaPlaceDbContext))]
-    partial class PizzaPlaceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210428015231_AddedSubscription")]
+    partial class AddedSubscription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,9 +130,6 @@ namespace PizzaPlace.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DateSubscribed")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");

@@ -10,28 +10,17 @@ using PizzaPlace.ViewModels;
 
 namespace PizzaPlace.Pages
 {
-    public class OrderModel : PageModel
+    public class TrackOrderModel : PageModel
     {
         private readonly IOrdersService _ordersService;
 
-        public OrderModel(IOrdersService ordersService)
+        public TrackOrderModel(IOrdersService ordersService)
         {
             _ordersService = ordersService;
         }
-        [BindProperty]
         public OrderViewModel Order { get; set; }
         public void OnGet()
         {
-        }
-        public IActionResult OnPost()
-        {
-            if (ModelState.IsValid)
-            {
-                var newOrder = Order.ToModel();
-                _ordersService.Create(newOrder);
-                return RedirectToPage("SuccessfullOrder");
-            }
-            return Page();
         }
     }
 }

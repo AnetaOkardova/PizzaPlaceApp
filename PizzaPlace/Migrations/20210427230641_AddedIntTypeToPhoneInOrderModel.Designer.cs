@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaPlace.Repositories;
 
 namespace PizzaPlace.Migrations
 {
     [DbContext(typeof(PizzaPlaceDbContext))]
-    partial class PizzaPlaceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210427230641_AddedIntTypeToPhoneInOrderModel")]
+    partial class AddedIntTypeToPhoneInOrderModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,24 +122,6 @@ namespace PizzaPlace.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("PizzaPlace.Models.Subscription", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DateSubscribed")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Subscriptions");
                 });
 #pragma warning restore 612, 618
         }

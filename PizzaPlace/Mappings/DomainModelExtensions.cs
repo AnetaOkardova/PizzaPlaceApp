@@ -18,8 +18,8 @@ namespace PizzaPlace.Mappings
                 ValidUntil = offer.ValidUntil
             };
         }
-        
-            public static MenuItemView ToMenuItemView(this MenuItem menuItem)
+
+        public static MenuItemView ToMenuItemView(this MenuItem menuItem)
         {
             return new MenuItemView()
             {
@@ -29,6 +29,17 @@ namespace PizzaPlace.Mappings
                 Price = menuItem.Price,
                 Currency = menuItem.Currency,
                 ImageUrl = menuItem.ImageUrl
+            };
+        }
+        public static OrderViewModel ToOrderViewModel(this Order order)
+        {
+            return new OrderViewModel()
+            {
+                Name = order.Name,
+                Surname = order.Surname,
+                Address = order.Address,
+                Phone = order.Phone,
+                Message = order.Message,
             };
         }
     }
