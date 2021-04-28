@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaPlace.Repositories;
 
 namespace PizzaPlace.Migrations
 {
     [DbContext(typeof(PizzaPlaceDbContext))]
-    partial class PizzaPlaceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210428041636_AddedSlug")]
+    partial class AddedSlug
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +52,7 @@ namespace PizzaPlace.Migrations
 
                     b.Property<string>("Slug")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -58,9 +60,6 @@ namespace PizzaPlace.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Slug")
-                        .IsUnique();
 
                     b.ToTable("MenuItems");
                 });

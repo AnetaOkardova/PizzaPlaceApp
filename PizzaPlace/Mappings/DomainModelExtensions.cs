@@ -28,7 +28,8 @@ namespace PizzaPlace.Mappings
                 Description = menuItem.Description,
                 Price = menuItem.Price,
                 Currency = menuItem.Currency,
-                ImageUrl = menuItem.ImageUrl
+                ImageUrl = menuItem.ImageUrl,
+                Slug = menuItem.Slug
             };
         }
         public static OrderViewModel ToOrderViewModel(this Order order)

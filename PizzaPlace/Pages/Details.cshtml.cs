@@ -20,13 +20,13 @@ namespace PizzaPlace.Pages
         }
         public MenuItemView MenuItem { get; set; }
         public string Message { get; set; }
-        public void OnGet(int id)
+        public void OnGet(string slug)
         {
-            var menuItem = _menuItemsService.GetById(id);
+            var menuItem = _menuItemsService.GetBySlug(slug);
 
             if(menuItem == null)
             {
-                Message = $"There is no item with ID {id}";
+                Message = $"There is no item with name {slug}";
             }
             else{
                 MenuItem = menuItem.ToMenuItemView();

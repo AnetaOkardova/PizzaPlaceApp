@@ -28,7 +28,7 @@
                             <p class="card-text menuItemDescription">@item.Description</p>
                             <p class="card-text">Price: @item.Price @item.Currency</p>
 
-                            <a asp-page="Details" asp-route-id="@item.Id" class="btn btn-primary">See more</a>
+                            <a asp-page="Details" asp-route-slug="@item.Slug" class="btn btn-primary">See more</a>
                         </div>
                     </div>
                 </div>

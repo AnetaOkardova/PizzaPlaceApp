@@ -16,5 +16,11 @@ namespace PizzaPlace.Repositories
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<MenuItem>()
+                .HasIndex(u => u.Slug)
+                .IsUnique();
+        }
     }
 }
