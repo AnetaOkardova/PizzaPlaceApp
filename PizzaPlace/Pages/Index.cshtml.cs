@@ -15,16 +15,21 @@ namespace PizzaPlace.Pages
     public class IndexModel : PageModel
     {
         private readonly IOffersService _offersService;
+        private readonly ISubscriptionsService _subscriptionsService;
 
-        public IndexModel(IOffersService offersService)
+        public IndexModel(IOffersService offersService, ISubscriptionsService subscriptionsService)
         {
             _offersService = offersService;
+            _subscriptionsService = subscriptionsService;
         }
 
-
+        [BindProperty]
         public List<OfferViewModel> Offers { get; set; }
 
         public string Message { get; set; }
+        [BindProperty]
+        public SubscriptionViewModel SubscriptionEmail { get; set; }
+        public string MessageAboutSubscribing { get; set; }
 
         public void OnGet()
         {
@@ -34,6 +39,25 @@ namespace PizzaPlace.Pages
                 Message = "There are no active offers at this time";
             }
             Offers = offers.Select(x => x.ToOfferViewModel()).ToList();
+        }
+        public IActionResult OnPost()
+        {
+            if (ModelState.IsValid)
+            {
+                var subscription = SubscriptionEmail.ToModel();
+                var isSuccessfull = _subscriptionsService.Create(subscription);
+                if (isSuccessfull)
+                {
+                    return Page();
+                }
+                else
+                {
+                    OnGet();
+                    MessageAboutSubscribing = $"There is already a subscription with the email: {subscription.Email}";
+                    return Page();
+                }
+            }
+            return Page();
         }
     }
 }

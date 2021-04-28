@@ -27,9 +27,9 @@
         <div class="col p-2">
             <fieldset class="border rounded p-2 m-2">
                 <legend style="color: rgb(236,128,50)">Subscribe</legend>
+                <h6 style="color: rgb(65,41,46)">Enter your email if you like to subscribe and receive our latest offers:</h6>
                 <form class="p-2" asp-page="SuccessfullOrder" method="post" onsubmit="return validateForm()">
                     <div class="form-group">
-                        <label class="control-label" asp-for="@Model.SubscriptionEmail.Email"> Email</label>
                         <input type="email" asp-for="@Model.SubscriptionEmail.Email" class="form-control" required placeholder="Email" />
                     </div>
                     <div class="form-group">
@@ -37,7 +37,6 @@
                     </div>
                 </form>
             </fieldset>
-
         </div>
     </div>
 </div>
