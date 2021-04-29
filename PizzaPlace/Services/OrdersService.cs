@@ -47,5 +47,10 @@ namespace PizzaPlace.Services
         {
             return _ordersRepository.GetById(id);
         }
+
+        public List<Order> GetAll()
+        {
+            return _ordersRepository.GetAll();
+        }
     }
 }

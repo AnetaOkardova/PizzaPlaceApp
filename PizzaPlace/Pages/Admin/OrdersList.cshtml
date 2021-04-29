@@ -1,0 +1,39 @@
+﻿@page
+@model PizzaPlace.Pages.Admin.OrdersListModel
+@{
+}
+
+@{
+    ViewData["Title"] = "Orders list";
+}
+
+
+<div class="row justify-content-center">
+    <h3>Orders List: </h3>
+</div>
+
+<div class="row justify-content-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model.OrdersList)
+            {
+                <tr>
+                    <td>@order.Name</td>
+                    <td>@order.Surname</td>
+                    <td>@order.Phone</td>
+                    <td>@order.Address</td>
+                    <td>@order.Message</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -26,5 +26,10 @@ namespace PizzaPlace.Repositories
         {
             return _context.Orders.FirstOrDefault(x => x.Id == id);
         }
+
+        public List<Order> GetAll()
+        {
+            return _context.Orders.ToList();
+        }
     }
 }

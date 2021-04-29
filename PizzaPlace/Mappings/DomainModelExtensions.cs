@@ -43,5 +43,18 @@ namespace PizzaPlace.Mappings
                 Message = order.Message,
             };
         }
+        public static OrdersListViewModel ToOrdersListViewModel(this Order order)
+        {
+            return new OrdersListViewModel()
+            {
+                Id = order.Id,
+                Name = order.Name,
+                Surname = order.Surname,
+                Address = order.Address,
+                Phone = order.Phone,
+                Message = order.Message,
+            };
+        }
+
     }
 }

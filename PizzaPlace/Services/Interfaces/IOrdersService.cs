@@ -12,5 +12,6 @@ namespace PizzaPlace.Services.Interfaces
     {
         void Create(Order order);
         Order GetById(int id);
+        List<Order> GetAll();
     }
 }

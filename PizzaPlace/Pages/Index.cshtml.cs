@@ -38,7 +38,10 @@ namespace PizzaPlace.Pages
             {
                 Message = "There are no active offers at this time";
             }
-            Offers = offers.Select(x => x.ToOfferViewModel()).ToList();
+            else
+            {
+                Offers = offers.Select(x => x.ToOfferViewModel()).ToList();
+            }
         }
         public IActionResult OnPost()
         {
@@ -48,6 +51,7 @@ namespace PizzaPlace.Pages
                 var isSuccessfull = _subscriptionsService.Create(subscription);
                 if (isSuccessfull)
                 {
+                    OnGet();
                     return Page();
                 }
                 else
