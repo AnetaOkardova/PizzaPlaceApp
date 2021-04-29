@@ -53,6 +53,8 @@ namespace PizzaPlace.Mappings
                 Address = order.Address,
                 Phone = order.Phone,
                 Message = order.Message,
+                Status = order.Status.ToString(),
+                DateCreated = order.DateCreated
             };
         }
 

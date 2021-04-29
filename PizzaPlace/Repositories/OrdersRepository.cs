@@ -31,5 +31,11 @@ namespace PizzaPlace.Repositories
         {
             return _context.Orders.ToList();
         }
+
+        public void Update(Order order)
+        {
+            _context.Orders.Update(order);
+            _context.SaveChanges();
+        }
     }
 }

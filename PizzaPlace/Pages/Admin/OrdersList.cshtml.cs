@@ -19,10 +19,45 @@ namespace PizzaPlace.Pages.Admin
             _ordersService = ordersService;
         }
         public List<OrdersListViewModel> OrdersList { get; set; }
+        public string Message { get; set; }
         public void OnGet()
         {
             var orders = _ordersService.GetAll();
             OrdersList = orders.Select(x => x.ToOrdersListViewModel()).ToList();
+
+        }
+        public IActionResult OnGetSetDelivered(int id)
+        {
+            var order = _ordersService.GetById(id);
+            if(order == null)
+            {
+                Message = "There is no order with such Id";
+                OnGet();
+                return Page();
+            }
+            else
+            {
+                _ordersService.SetDelivered(order);
+                OnGet();
+                return Page();
+            }
+
+        }
+        public IActionResult OnGetSetProcessed(int id)
+        {
+            var order = _ordersService.GetById(id);
+            if (order == null)
+            {
+                Message = "There is no order with such Id";
+                OnGet();
+                return Page();
+            }
+            else
+            {
+                _ordersService.SetProcessed(order);
+                OnGet();
+                return Page();
+            }
 
         }
 

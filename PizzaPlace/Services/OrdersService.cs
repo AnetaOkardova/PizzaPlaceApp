@@ -21,7 +21,7 @@ namespace PizzaPlace.Services
 
         public void Create(Order order)
         {
-
+            order.Status = OrderStatus.InProgress;
             _ordersRepository.Add(order);
         }
         //function slugify(text)
@@ -51,6 +51,18 @@ namespace PizzaPlace.Services
         public List<Order> GetAll()
         {
             return _ordersRepository.GetAll();
+        }
+
+        public void SetDelivered(Order order)
+        {
+            order.Status = OrderStatus.Delivered;
+            _ordersRepository.Update(order);
+        }
+
+        public void SetProcessed(Order order)
+        {
+            order.Status = OrderStatus.Processed;
+            _ordersRepository.Update(order);
         }
     }
 }
