@@ -3,6 +3,7 @@ using PizzaPlace.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace PizzaPlace.Mappings
@@ -57,6 +58,31 @@ namespace PizzaPlace.Mappings
                 DateCreated = order.DateCreated
             };
         }
-
+        public static MenuItemsListViewModel ToMenuItemsListViewModel(this MenuItem menuItem)
+        {
+            return new MenuItemsListViewModel()
+            {
+                Id = menuItem.Id,
+                Title = menuItem.Title,
+                Description = menuItem.Description,
+                Price = menuItem.Price,
+                Currency = menuItem.Currency,
+                ImageUrl = menuItem.ImageUrl,
+                DateCreated = menuItem.DateCreated,
+                Slug = menuItem.Slug
+            };
+        }
+        public static string GenerateSlug(this string phrase)
+        {
+            string str = phrase.ToLower();
+            // invalid chars           
+            str = Regex.Replace(str, @"[^a-z0-9\s-]", "");
+            // convert multiple spaces into one space   
+            str = Regex.Replace(str, @"\s+", " ").Trim();
+            // cut and trim 
+            str = str.Substring(0, str.Length <= 45 ? str.Length : 45).Trim();
+            str = Regex.Replace(str, @"\s", "-"); // hyphens   
+            return str;
+        }
     }
 }

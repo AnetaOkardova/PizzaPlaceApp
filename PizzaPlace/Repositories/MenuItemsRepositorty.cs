@@ -16,6 +16,16 @@ namespace PizzaPlace.Repositories
             _context = context;
         }
 
+        public void Delete(MenuItem menuItem)
+        {
+            _context.MenuItems.Remove(menuItem);
+            _context.SaveChanges();
+        }
+        public void Create(MenuItem menuItem)
+        {
+            _context.MenuItems.Add(menuItem);
+            _context.SaveChanges();
+        }
         public List<MenuItem> GetAll()
         {
             return _context.MenuItems.ToList();
@@ -29,6 +39,28 @@ namespace PizzaPlace.Repositories
         public MenuItem GetBySlug(string slug)
         {
             return _context.MenuItems.FirstOrDefault(x => x.Slug.ToLower() == slug.ToLower());
+        }
+
+        public void Update(MenuItem menuItem)
+        {
+            _context.MenuItems.Update(menuItem);
+            _context.SaveChanges(); 
+        }
+
+        public bool CheckIfExists(MenuItem menuItem, string title)
+        {
+            bool exists = true;
+            if(menuItem != null)
+            {
+                exists = _context.MenuItems.Any(x => x.Slug == menuItem.Slug);
+            }
+            
+            if(title != null)
+            {
+                exists = _context.MenuItems.Any(x => x.Title == title);
+            }
+
+            return exists;
         }
     }
 }

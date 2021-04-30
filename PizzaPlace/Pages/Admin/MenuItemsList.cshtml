@@ -1,0 +1,59 @@
+﻿@page
+@model PizzaPlace.Pages.Admin.MenuItemsListModel
+@{
+}
+@using PizzaPlace.Models;
+@{
+    ViewData["Title"] = "Manu items list";
+}
+
+
+<div class="row justify-content-center">
+    <h3>Menu Items List: </h3>
+</div>
+
+@if (Model.Message != null)
+{
+    <div class="row justify-content-center">
+        <h3 class="text-danger">@Model.Message</h3>
+    </div>
+}
+
+<div class="m-2">
+    <a class="btn btn-success" asp-page="/Admin/Modify/MenuItem/Create">Create new</a>
+</div>
+
+
+<div class="row justify-content-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Currency</th>
+                <th>ImageUrl</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var menuItem in Model.MenuItemsList.OrderByDescending(x => x.DateCreated).ToList())
+            {
+                <tr>
+                    <td>@menuItem.Title</td>
+                    <td>@menuItem.Description</td>
+                    <td>@menuItem.Price</td>
+                    <td>@menuItem.Currency</td>
+                    <td>@menuItem.ImageUrl</td>
+                    <td>
+                        <a class="btn btn-primary" asp-page="/Admin/Modify/MenuItem/Modify" asp-route-id="@menuItem.Id">Modify</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" asp-page="/Admin/MenuItemsList" asp-page-handler="Delete" asp-route-id="@menuItem.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

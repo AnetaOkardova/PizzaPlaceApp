@@ -31,5 +31,18 @@ namespace PizzaPlace.Mappings
 
             return subscription;
         }
+        public static MenuItem ToModel(this MenuItemView menuItem)
+        {
+            return new MenuItem()
+            {
+                Id = menuItem.Id,
+                Title = menuItem.Title,
+                Description = menuItem.Description,
+                Price = menuItem.Price,
+                Currency = menuItem.Currency,
+                ImageUrl = menuItem.ImageUrl,
+                Slug = menuItem.Slug
+            };
+        }
     }
 }

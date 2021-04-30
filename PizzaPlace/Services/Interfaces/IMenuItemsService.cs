@@ -1,4 +1,5 @@
 ﻿using PizzaPlace.Models;
+using PizzaPlace.Models.DtoModels;
 using PizzaPlace.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,8 @@ namespace PizzaPlace.Services.Interfaces
         List<MenuItem> GetAll();
         MenuItem GetById(int id);
         MenuItem GetBySlug(string slug);
+        StatusModel Update(MenuItem menuItem);
+        void Delete(MenuItem menuItem);
+        StatusModel Create(MenuItem domainModel);
     }
 }

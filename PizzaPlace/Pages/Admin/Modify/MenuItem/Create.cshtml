@@ -1,0 +1,68 @@
+﻿@page
+
+@model PizzaPlace.Pages.Admin.Modify.MenuItem.CreateModel
+
+@{
+    ViewData["Title"] = "Create menu item";
+}
+
+@if (Model.Message != null)
+{
+    <div class="row justify-content-center">
+        <h3 class="text-success">@Model.Message</h3>
+    </div>
+}
+
+@if (Model.ErrorMessage != null)
+{
+    <div class="row justify-content-center">
+        <h3 class="text-danger">@Model.ErrorMessage</h3>
+    </div>
+}
+<h3 style="color: rgb(65,41,46)">Create new menu item</h3>
+
+<div class="container-fluid">
+    <div class="row justify-content-center p-2 w-100">
+        <div class="col">
+            <fieldset class="border rounded" p-2 m-2>
+                <legend style="color: rgb(65,41,46)">Create</legend>
+                <form class="p-2" style="background: rgb(255,255,255); background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(237,130,55,1) 100%);" asp-page="/Admin/Modify/MenuItem/Create" method="post" onsubmit="return validateForm()">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label class="control-label" asp-for="@Model.MenuItem.Title"><span class="text-danger">*</span>Title</label>
+                        <input type="text" asp-for="@Model.MenuItem.Title" class="form-control" required placeholder="Enter title" />
+                        <span asp-validation-for="@Model.MenuItem.Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" asp-for="@Model.MenuItem.ImageUrl"><span class="text-danger">*</span>ImageUrl</label>
+                        <input type="text" asp-for="@Model.MenuItem.ImageUrl" class="form-control" required placeholder="enter ImageUrl" />
+                        <span asp-validation-for="@Model.MenuItem.ImageUrl" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" asp-for="@Model.MenuItem.Price"><span class="text-danger">*</span>Price</label>
+                        <input type="number" asp-for="@Model.MenuItem.Price" class="form-control" required placeholder="Enter Price" />
+                        <span asp-validation-for="@Model.MenuItem.Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" asp-for="@Model.MenuItem.Currency"><span class="text-danger">*</span>Currency</label>
+                        <input type="text" asp-for="@Model.MenuItem.Currency" class="form-control" required placeholder="Enter Currency" />
+                        <span asp-validation-for="@Model.MenuItem.Currency" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" asp-for="@Model.MenuItem.Description"><span class="text-danger">*</span>Description</label>
+                        <textarea type="text" asp-for="@Model.MenuItem.Description" class="form-control" cols="20" rows="10" required placeholder="Enter Description"></textarea>
+                        <span asp-validation-for="@Model.MenuItem.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submit menu item" class="btn" style="background-color: rgb(255,223,206); color: rgb(65,41,46); font-weight:bolder" />
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/RequiredDataValidator.js"></script>
+}
