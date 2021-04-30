@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +32,21 @@ namespace PizzaPlace
             services.AddRazorPages();
 
             services.AddDbContext<PizzaPlaceDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("PizzaPlaceDb")));
+
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddEntityFrameworkStores<PizzaPlaceDbContext>()
+                .AddDefaultTokenProviders();
+            
+            //(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
+            //    options =>
+            //    {
+            //        options.ExpireTimeSpan = TimeSpan.FromDays(int.Parse(Configuration["CookieExpirationPeriod"]));
+            //        options.LoginPath = "/Auth/SignIn";
+            //        options.AccessDeniedPath = "/Auth/AccessDenied";
+            //        //options.SlidingExpiration = false; -- da se iskluci i pokraj aktivnost
+
+            //    }
+            //    );
 
             //services
             services.AddTransient<IOffersService, OffersService>();
@@ -63,6 +79,8 @@ namespace PizzaPlace
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

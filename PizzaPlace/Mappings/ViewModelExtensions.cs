@@ -44,5 +44,16 @@ namespace PizzaPlace.Mappings
                 Slug = menuItem.Slug
             };
         }
+        public static Offer ToModel(this OfferListViewModel offerView)
+        {
+            return new Offer()
+            {
+                Id = offerView.Id,
+                Title = offerView.Title,
+                Description = offerView.Description,
+                ValidUntil = offerView.ValidUntil,
+                DateCreated = offerView.DateCreated
+            };
+        }
     }
 }

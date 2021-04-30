@@ -1,0 +1,65 @@
+﻿@page
+@model PizzaPlace.Pages.Admin.OffersListModel
+@{
+}
+
+@using PizzaPlace.Models;
+@{
+    ViewData["Title"] = "Offers list";
+}
+
+
+<div class="row justify-content-center">
+    <h3>Menu Items List: </h3>
+</div>
+
+@if (Model.Message != null)
+{
+    <div class="row justify-content-center">
+        <h3 class="text-danger">@Model.Message</h3>
+    </div>
+}
+
+<div class="m-2">
+    <a class="btn btn-success" asp-page="/Admin/Modify/Offer/Create">Create new</a>
+</div>
+
+
+<div class="row justify-content-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Valid until</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var offer in Model.OffersList.OrderByDescending(x => x.DateCreated).ToList())
+            {
+            <tr>
+                <td>@offer.Title</td>
+                <td>@offer.Description</td>
+                <td>@offer.ValidUntil.ToString("dd-MM-yyyy")</td>
+                @if (offer.ValidUntil.Date < DateTime.Now.Date)
+                {
+                    <td>
+                        <p class="text-danger">Expired</p>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a class="btn btn-primary" asp-page="/Admin/Modify/Offer/Modify" asp-route-id="@offer.Id">Modify</a>
+                    </td>
+                }
+                <td>
+                    <a class="btn btn-danger" asp-page="/Admin/OffersList" asp-page-handler="Delete" asp-route-id="@offer.Id">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

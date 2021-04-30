@@ -9,5 +9,11 @@ namespace PizzaPlace.Repositories.Interfaces
     public interface IOffersRepository
     {
         List<Offer> GetAllValid();
+        List<Offer> GetAll();
+        Offer GetById(int id);
+        void Delete(Offer offer);
+        bool CheckIfExists(Offer offer, string title);
+        void Create(Offer offer);
+        void Update(Offer offer);
     }
 }

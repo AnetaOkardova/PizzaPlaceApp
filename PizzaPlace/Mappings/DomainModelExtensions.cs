@@ -20,6 +20,17 @@ namespace PizzaPlace.Mappings
             };
         }
 
+        public static OfferListViewModel ToOfferListViewModel(this Offer offer)
+        {
+            return new OfferListViewModel()
+            {
+                Id = offer.Id,
+                Title = offer.Title,
+                Description = offer.Description,
+                ValidUntil = offer.ValidUntil,
+                DateCreated = offer.DateCreated
+            };
+        }
         public static MenuItemView ToMenuItemView(this MenuItem menuItem)
         {
             return new MenuItemView()
