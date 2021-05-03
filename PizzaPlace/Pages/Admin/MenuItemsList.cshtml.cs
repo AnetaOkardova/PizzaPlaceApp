@@ -18,12 +18,12 @@ namespace PizzaPlace.Pages.Admin
         {
             _menuItemsService = menuItemsService;
         }
-        public List<MenuItemsListViewModel> MenuItemsList { get; set; }
+        public List<MenuItemsListViewModel> MenuItems { get; set; }
         public string Message { get; set; }
         public void OnGet()
         {
             var menuItems = _menuItemsService.GetAll();
-            MenuItemsList = menuItems.Select(x => x.ToMenuItemsListViewModel()).ToList();
+            MenuItems = menuItems.Select(x => x.ToMenuItemsListViewModel()).ToList();
         }
         public IActionResult OnGetDelete(int id)
         {
