@@ -37,5 +37,10 @@ namespace PizzaPlace.Repositories
             _context.Orders.Update(order);
             _context.SaveChanges();
         }
+
+        public List<Order> GetByStatus(OrderStatus orderStatus)
+        {
+            return _context.Orders.Where(x => x.Status == orderStatus).ToList();
+        }
     }
 }

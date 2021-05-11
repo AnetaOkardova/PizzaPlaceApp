@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PizzaPlace.Mappings;
@@ -10,6 +11,7 @@ using PizzaPlace.ViewModels;
 
 namespace PizzaPlace.Pages.Admin
 {
+    [Authorize]
     public class OffersListModel : PageModel
     {
         private readonly IOffersService _offersService;

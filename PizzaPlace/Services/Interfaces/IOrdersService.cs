@@ -15,5 +15,6 @@ namespace PizzaPlace.Services.Interfaces
         List<Order> GetAll();
         void SetDelivered(Order order);
         void SetProcessed(Order order);
+        List<Order> GetByStatus(OrderStatus orderStatus);
     }
 }

@@ -11,7 +11,6 @@ using PizzaPlace.ViewModels;
 
 namespace PizzaPlace.Pages
 {
-    [Authorize]
     public class OrderModel : PageModel
     {
         private readonly IOrdersService _ordersService;

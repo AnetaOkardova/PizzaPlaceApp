@@ -17,7 +17,7 @@ using PizzaPlace.Models;
 
 namespace PizzaPlace.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+    [Authorize]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -79,6 +79,7 @@ namespace PizzaPlace.Areas.Identity.Pages.Account
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            //return RedirectToPage("/Index");
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -87,8 +88,9 @@ namespace PizzaPlace.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { 
-                    UserName = Input.Email, 
+                var user = new ApplicationUser
+                {
+                    UserName = Input.Email,
                     Email = Input.Email,
                     Name = Input.Name,
                     Surname = Input.Surname,
@@ -98,6 +100,10 @@ namespace PizzaPlace.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("name", user.Name));
+                    await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("surname", user.Surname));
+                    await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("address", user.Address));
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

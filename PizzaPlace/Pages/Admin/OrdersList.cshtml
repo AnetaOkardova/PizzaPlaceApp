@@ -31,7 +31,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var order in Model.OrdersList.OrderByDescending(x => x.DateCreated).ToList())
+            @foreach (var order in Model.OrdersList.OrderByDescending(x => x.Status).ToList())
             {
                 <tr>
                     <td>@order.Name</td>
@@ -58,7 +58,7 @@
                         else
                         {
                             <td>
-                                <a class="btn btn-danger" asp-page="/Admin/OrdersList" asp-page-handler="SetProcessed" asp-route-id="@order.Id">Set processed</a>
+                                <a class="btn btn-warning" asp-page="/Admin/OrdersList" asp-page-handler="SetProcessed" asp-route-id="@order.Id">Set processed</a>
                             </td>
 
                         }

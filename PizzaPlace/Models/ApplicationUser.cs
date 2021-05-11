@@ -15,6 +15,5 @@ namespace PizzaPlace.Models
         public string Surname { get; set; }
         [Required]
         public string Address { get; set; }
-        //public List<Order> Orders { get; set; }
     }
 }

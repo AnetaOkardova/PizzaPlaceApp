@@ -12,5 +12,6 @@ namespace PizzaPlace.Repositories.Interfaces
         Order GetById(int id);
         List<Order> GetAll();
         void Update(Order order);
+        List<Order> GetByStatus(OrderStatus orderStatus);
     }
 }

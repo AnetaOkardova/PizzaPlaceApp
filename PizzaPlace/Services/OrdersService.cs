@@ -46,5 +46,9 @@ namespace PizzaPlace.Services
             order.Status = OrderStatus.Processed;
             _ordersRepository.Update(order);
         }
+        public List<Order> GetByStatus(OrderStatus orderStatus)
+        {
+            return _ordersRepository.GetByStatus(orderStatus);
+        }
     }
 }

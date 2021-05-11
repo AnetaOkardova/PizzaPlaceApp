@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -12,9 +11,6 @@ using PizzaPlace.Repositories.Interfaces;
 using PizzaPlace.Services;
 using PizzaPlace.Services.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PizzaPlace
 {
@@ -37,7 +33,11 @@ namespace PizzaPlace
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddEntityFrameworkStores<PizzaPlaceDbContext>()
                 .AddDefaultTokenProviders();
-            
+
+            services.ConfigureApplicationCookie(options => {
+                options.ExpireTimeSpan = TimeSpan.FromDays(int.Parse(Configuration["CookieExpirationPeriod"]));
+                options.LoginPath = "/admin/login";
+            });
             //(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
             //    options =>
             //    {
