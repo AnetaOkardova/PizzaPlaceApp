@@ -31,6 +31,7 @@ namespace PizzaPlace
             services.AddDbContext<PizzaPlaceDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("PizzaPlaceDb")));
 
             services.AddDefaultIdentity<ApplicationUser>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<PizzaPlaceDbContext>()
                 .AddDefaultTokenProviders();
 

@@ -12,7 +12,7 @@ using PizzaPlace.ViewModels;
 
 namespace PizzaPlace.Pages.Admin
 {
-    [Authorize /*(Roles ="Admin")*/]
+    [Authorize(Roles = "Admin")]
     public class OrdersListModel : PageModel
     {
         private readonly IOrdersService _ordersService;
@@ -27,12 +27,11 @@ namespace PizzaPlace.Pages.Admin
         {
             var orders = _ordersService.GetAll();
             OrdersList = orders.Select(x => x.ToOrdersListViewModel()).ToList();
-
         }
         public IActionResult OnGetSetDelivered(int id)
         {
             var order = _ordersService.GetById(id);
-            if(order == null)
+            if (order == null)
             {
                 Message = "There is no order with such Id";
                 OnGet();
@@ -63,30 +62,36 @@ namespace PizzaPlace.Pages.Admin
             }
 
         }
-        public void OnGetProcessed()
-        {
-            var processedOrders = _ordersService.GetByStatus(OrderStatus.Processed);
-            if (processedOrders == null)
-            {
-                Message = "There are no processed orders at this time";
-            }
-            else
-            {
-                OrdersList = processedOrders.Select(x => x.ToOrdersListViewModel()).ToList();
-            }
-        }
+        //public IActionResult OnGetProcessed()
+        //{
+        //    var processedOrders = _ordersService.GetByStatus(OrderStatus.Processed);
+        //    if (processedOrders == null)
+        //    {
+        //        Message = "There are no processed orders at this time";
+        //        return RedirectToPage("~/");
+        //    }
+        //    else
+        //    {
+        //        OrdersList = processedOrders.Select(x => x.ToOrdersListViewModel()).ToList();
+        //        OnGet(processedOrders);
+        //        return Page();
+        //    }
+        //}
 
-        public void OnGetInProgress()
-        {
-            var InProgressOrders = _ordersService.GetByStatus(OrderStatus.InProgress);
-            if (InProgressOrders == null)
-            {
-                Message = "There are no in progress orders at this time";
-            }
-            else
-            {
-                OrdersList = InProgressOrders.Select(x => x.ToOrdersListViewModel()).ToList();
-            }
-        }
+        //public IActionResult OnGetInProgress()
+        //{
+        //    var InProgressOrders = _ordersService.GetByStatus(OrderStatus.InProgress);
+        //    if (InProgressOrders == null)
+        //    {
+        //        Message = "There are no in progress orders at this time";
+        //        return RedirectToPage("~/");
+        //    }
+        //    else
+        //    {
+        //        OrdersList = InProgressOrders.Select(x => x.ToOrdersListViewModel()).ToList();
+        //        OnGet(InProgressOrders);
+        //        return Page();
+        //    }
+        //}
     }
 }

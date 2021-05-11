@@ -17,6 +17,7 @@ namespace PizzaPlace.Repositories
 
         public void Add(Order order)
         {
+            //order.Id = int.Parse(Guid.NewGuid().ToString());
             order.DateCreated = DateTime.Now;
             _context.Orders.Add(order);
             _context.SaveChanges();
