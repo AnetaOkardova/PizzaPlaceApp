@@ -39,7 +39,7 @@
             }
             else
             {
-                @foreach (var offer in Model.Offers)
+                @foreach (var offer in Model.Offers.OrderBy(x=>x.ValidUntil))
                 {
                     <div class="card justify-content-center m-1">
                         <div class="card-body text-center">

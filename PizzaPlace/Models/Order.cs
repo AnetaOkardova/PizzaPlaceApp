@@ -27,5 +27,8 @@ namespace PizzaPlace.Models
         [Required]
         [Column(TypeName = "varchar(24)")]
         public OrderStatus Status { get; set; }
+        public int UserId { get; set; }
+        public ApplicationUser User { get; set; }
+
     }
 }

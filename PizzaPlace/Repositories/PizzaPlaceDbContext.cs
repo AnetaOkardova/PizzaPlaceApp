@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PizzaPlace.Repositories
 {
-    public class PizzaPlaceDbContext : IdentityDbContext<IdentityUser>
+    public class PizzaPlaceDbContext : IdentityDbContext<ApplicationUser>
     {
         public PizzaPlaceDbContext(DbContextOptions<PizzaPlaceDbContext> options) : base(options)
         { }
