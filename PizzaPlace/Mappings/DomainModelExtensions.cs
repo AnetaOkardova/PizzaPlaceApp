@@ -95,5 +95,18 @@ namespace PizzaPlace.Mappings
             str = Regex.Replace(str, @"\s", "-"); // hyphens   
             return str;
         }
+        public static ApplicationUsersListViewModel ToApplicationUsersListViewModel(this ApplicationUser applicationUser)
+        {
+            return new ApplicationUsersListViewModel()
+            {
+                Id = applicationUser.Id,
+                UserName = applicationUser.UserName,
+                Email = applicationUser.Email,
+                PhoneNumber = applicationUser.PhoneNumber,
+                Name = applicationUser.Name,
+                Surname = applicationUser.Surname,
+                Address = applicationUser.Address,
+            };
+        }
     }
 }

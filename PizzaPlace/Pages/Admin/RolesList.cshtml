@@ -1,0 +1,54 @@
+﻿@page
+@model PizzaPlace.Pages.Admin.RolesListModel
+
+@using PizzaPlace.Models;
+@{
+    ViewData["Title"] = "Roles list";
+}
+
+<div class="row justify-content-center">
+    <h3>Roles List: </h3>
+</div>
+
+@if (Model.Message != null)
+{
+    <div class="row justify-content-center">
+        <h3 class="text-success">@Model.Message</h3>
+    </div>
+}
+@if (Model.ErrorMessage != null)
+{
+    <div class="row justify-content-center">
+        <h3 class="text-danger">@Model.ErrorMessage</h3>
+    </div>
+}
+<div class="m-2">
+    <a class="btn btn-success" asp-page="/Admin/Modify/Role/Create">Create new</a>
+</div>
+
+
+<div class="row justify-content-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var role in Model.RolesList)
+            {
+                <tr>
+                    <td>@role.ToString()</td>
+                    <td>
+                        <a class="btn btn-danger" asp-page="/Admin/Modify/Role/Modify" asp-route-id="@role.Id">Modify role</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" asp-page-handler="DeleteRole" asp-route-id="@role.Id">Delete role</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -55,5 +55,18 @@ namespace PizzaPlace.Mappings
                 DateCreated = offerView.DateCreated
             };
         }
+        public static ApplicationUser ToModel(this ApplicationUsersListViewModel applicationUsersListViewModel)
+        {
+            return new ApplicationUser()
+            {
+                Id = applicationUsersListViewModel.Id,
+                UserName = applicationUsersListViewModel.UserName,
+                Email = applicationUsersListViewModel.Email,
+                PhoneNumber = applicationUsersListViewModel.PhoneNumber,
+                Name = applicationUsersListViewModel.Name,
+                Surname = applicationUsersListViewModel.Surname,
+                Address = applicationUsersListViewModel.Address
+            };
+        }
     }
 }

@@ -51,7 +51,7 @@
 
                         }
 
-                        @if (User.IsInRole("Admin"))
+                        @if (User.IsInRole("ContentCreator") || User.IsInRole("Admin"))
                         {
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -59,20 +59,21 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li>
-                                        <a class="nav-link active" aria-current="page" asp-area="" asp-page="/Admin/MenuItemsList">Modify Menu Items</a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link active" aria-current="page" asp-area="" asp-page="/Admin/UsersList">Modify Users</a>
-                                    </li>
-                                    <li>
                                         <a class="nav-link active" aria-current="page" asp-area="" asp-page="/Admin/RolesList">Modify Roles</a>
                                     </li>
-                                    <li>
-                                        <a class="nav-link active" aria-current="page" asp-area="" asp-page="/Admin/Modify/EmployeesList">Modify Employees</a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link active" aria-current="page" asp-area="" asp-page="/Admin/OffersList">Modify offers</a>
-                                    </li>
+
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li>
+                                            <a class="nav-link active" aria-current="page" asp-area="" asp-page="/Admin/ApplicationUsersList">Modify Users</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link active" aria-current="page" asp-area="" asp-page="/Admin/MenuItemsList">Modify Menu Items</a>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link active" aria-current="page" asp-area="" asp-page="/Admin/OffersList">Modify Offers</a>
+                                        </li>
+                                    }
                                 </ul>
                             </li>
                         }
