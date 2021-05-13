@@ -28,7 +28,7 @@ namespace PizzaPlace.Pages.Admin
             if (processedOrders.Count == 0)
             {
                 Message = "There are no processed orders at this time";
-                return RedirectToPage("/Index");
+                return Page();
             }
             else
             {
@@ -43,7 +43,7 @@ namespace PizzaPlace.Pages.Admin
             if (InProgressOrders.Count == 0)
             {
                 Message = "There are no in progress orders at this time";
-                return RedirectToPage("/Index");
+                return Page();
             }
             else
             {
@@ -57,14 +57,14 @@ namespace PizzaPlace.Pages.Admin
             if (order == null)
             {
                 Message = "There is no order with such Id";
-                //OnGetProcessed();
-                return RedirectToPage("/Index");
+                OnGetProcessed();
+                return Page();
             }
             else
             {
                 _ordersService.SetDelivered(order);
-                //OnGetProcessed();
-                return RedirectToPage("/Index");
+                OnGetProcessed();
+                return Page();
             }
 
         }
@@ -74,14 +74,14 @@ namespace PizzaPlace.Pages.Admin
             if (order == null)
             {
                 Message = "There is no order with such Id";
-                //OnGetInProgress();
-                return RedirectToPage("/Index");
+                OnGetInProgress();
+                return Page();
             }
             else
             {
                 _ordersService.SetProcessed(order);
-                //OnGetInProgress();
-                return RedirectToPage("/Index");
+                OnGetInProgress();
+                return Page();
 
             }
 

@@ -6,7 +6,6 @@
     ViewData["Title"] = "Orders list";
 }
 
-
 <div class="row justify-content-center">
     <h3>Orders List: </h3>
 </div>
@@ -16,54 +15,58 @@
         <h3 class="text-danger">@Model.Message</h3>
     </div>
 }
-<div class="row justify-content-center">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Message</th>
-                <th>Status</th>
-                <th>Update status</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var order in Model.OrdersList.OrderByDescending(x => x.Status).ToList())
-            {
+else
+{
+    <div class="row justify-content-center">
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@order.Name</td>
-                    <td>@order.Surname</td>
-                    <td>@order.Phone</td>
-                    <td>@order.Address</td>
-                    <td>@order.Message</td>
-                    @if (@order.Status == OrderStatus.Delivered.ToString())
-                    {
-                        <td class="text-success">@order.Status</td>
-                        <td class="text-success">
-                            Finished order
-                        </td>
-                    }
-                    else
-                    {
-                        <td class="text-danger">@order.Status</td>
-                        @if (@order.Status == OrderStatus.Processed.ToString())
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Message</th>
+                    <th>Status</th>
+                    <th>Update status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.OrdersList.OrderByDescending(x => x.Status).ToList())
+                {
+                    <tr>
+                        <td>@order.Name</td>
+                        <td>@order.Surname</td>
+                        <td>@order.Phone</td>
+                        <td>@order.Address</td>
+                        <td>@order.Message</td>
+                        @if (@order.Status == OrderStatus.Delivered.ToString())
                         {
-                            <td>
-                                <a class="btn btn-danger" asp-page="/Admin/FilteredOrdersList" asp-page-handler="SetDelivered" asp-route-id="@order.Id">Set delivered</a>
+                            <td class="text-success">@order.Status</td>
+                            <td class="text-success">
+                                Finished order
                             </td>
                         }
                         else
                         {
-                            <td>
-                                <a class="btn btn-warning" asp-page="/Admin/FilteredOrdersList" asp-page-handler="SetProcessed" asp-route-id="@order.Id">Set processed</a>
-                            </td>
+                            <td class="text-danger">@order.Status</td>
+                            @if (@order.Status == OrderStatus.Processed.ToString())
+                            {
+                                <td>
+                                    <a class="btn btn-danger" asp-page="/Admin/FilteredOrdersList" asp-page-handler="SetDelivered" asp-route-id="@order.Id">Set delivered</a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <a class="btn btn-warning" asp-page="/Admin/FilteredOrdersList" asp-page-handler="SetProcessed" asp-route-id="@order.Id">Set processed</a>
+                                </td>
 
+                            }
                         }
-                    }
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
