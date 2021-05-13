@@ -22,6 +22,7 @@ namespace PizzaPlace.Pages.Admin
         }
         public List<OrdersListViewModel> OrdersList { get; set; }
         public string Message { get; set; }
+
         public IActionResult OnGetProcessed()
         {
             var processedOrders = _ordersService.GetByStatus(OrderStatus.Processed);
@@ -36,7 +37,6 @@ namespace PizzaPlace.Pages.Admin
                 return Page();
             }
         }
-
         public IActionResult OnGetInProgress()
         {
             var InProgressOrders = _ordersService.GetByStatus(OrderStatus.InProgress);
@@ -51,6 +51,7 @@ namespace PizzaPlace.Pages.Admin
                 return Page();
             }
         }
+
         public IActionResult OnGetSetDelivered(int id)
         {
             var order = _ordersService.GetById(id);
@@ -62,7 +63,7 @@ namespace PizzaPlace.Pages.Admin
             }
             else
             {
-                _ordersService.SetDelivered(order);
+                _ordersService.SetStatus(order);
                 OnGetProcessed();
                 return Page();
             }
@@ -79,13 +80,10 @@ namespace PizzaPlace.Pages.Admin
             }
             else
             {
-                _ordersService.SetProcessed(order);
+                _ordersService.SetStatus(order);
                 OnGetInProgress();
                 return Page();
-
             }
-
         }
-
     }
 }

@@ -24,31 +24,21 @@ namespace PizzaPlace.Services
             order.Status = OrderStatus.InProgress;
             _ordersRepository.Add(order);
         }
-
         public Order GetById(int id)
         {
             return _ordersRepository.GetById(id);
         }
-
         public List<Order> GetAll()
         {
             return _ordersRepository.GetAll();
         }
-
-        public void SetDelivered(Order order)
-        {
-            order.Status = OrderStatus.Delivered;
-            _ordersRepository.Update(order);
-        }
-
-        public void SetProcessed(Order order)
-        {
-            order.Status = OrderStatus.Processed;
-            _ordersRepository.Update(order);
-        }
         public List<Order> GetByStatus(OrderStatus orderStatus)
         {
             return _ordersRepository.GetByStatus(orderStatus);
+        }
+        public void SetStatus(Order order)
+        {
+            _ordersRepository.SetStatus(order);
         }
     }
 }

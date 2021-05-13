@@ -39,7 +39,7 @@ namespace PizzaPlace.Pages.Admin
             }
             else
             {
-                _ordersService.SetDelivered(order);
+                _ordersService.SetStatus(order);
                 OnGet();
                 return Page();
             }
@@ -56,42 +56,11 @@ namespace PizzaPlace.Pages.Admin
             }
             else
             {
-                _ordersService.SetProcessed(order);
+                _ordersService.SetStatus(order);
                 OnGet();
                 return Page();
             }
 
         }
-        //public IActionResult OnGetProcessed()
-        //{
-        //    var processedOrders = _ordersService.GetByStatus(OrderStatus.Processed);
-        //    if (processedOrders == null)
-        //    {
-        //        Message = "There are no processed orders at this time";
-        //        return RedirectToPage("~/");
-        //    }
-        //    else
-        //    {
-        //        OrdersList = processedOrders.Select(x => x.ToOrdersListViewModel()).ToList();
-        //        OnGet(processedOrders);
-        //        return Page();
-        //    }
-        //}
-
-        //public IActionResult OnGetInProgress()
-        //{
-        //    var InProgressOrders = _ordersService.GetByStatus(OrderStatus.InProgress);
-        //    if (InProgressOrders == null)
-        //    {
-        //        Message = "There are no in progress orders at this time";
-        //        return RedirectToPage("~/");
-        //    }
-        //    else
-        //    {
-        //        OrdersList = InProgressOrders.Select(x => x.ToOrdersListViewModel()).ToList();
-        //        OnGet(InProgressOrders);
-        //        return Page();
-        //    }
-        //}
     }
 }
